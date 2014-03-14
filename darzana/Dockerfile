@@ -3,8 +3,6 @@ FROM ubuntu:12.10
 
 MAINTAINER kawasima: 0.1
 
-ENV http_proxy http://tisproxy:8080
-ENV https_proxy http://tisproxy:8080
 ENV LEIN_ROOT 1
 
 RUN apt-get update
