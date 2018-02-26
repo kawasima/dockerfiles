@@ -27,6 +27,10 @@ WORKDIR /apache-archiva
 
 USER archiva
 
+ADD AddGuestToObserver.class ./
+ADD setup.sh /usr/local/bin
+RUN setup.sh
+
 VOLUME /apache-archiva/data
 VOLUME /apache-archiva/logs
 VOLUME /apache-archiva/repositories/internal

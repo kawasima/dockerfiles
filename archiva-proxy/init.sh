@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+DATA_DIR=${DATA_DIR:=/apache-archiva/data}
+
 function urlParse(){
     # extract the protocol
     local proto="$(echo $1 | grep :// | sed -e's,^\(.*://\).*,\1,g')"
@@ -43,9 +45,9 @@ then
 
 fi
 
-cat /apache-archiva/data/archiva.xml | \
+cat ${DATA_DIR}/archiva.xml | \
     sed "s/{{remoteDownloadNetworkProxyId}}/${remoteDownloadNetworkProxyId}/g" | \
     sed "s/{{proxyId}}/${proxyId}/g" | \
     sed "s/{{networkProxy}}/${networkProxy}/g" > /tmp/archiva.xml
 
-mv /tmp/archiva.xml /apache-archiva/data/archiva.xml
+mv /tmp/archiva.xml ${DATA_DIR}/archiva.xml
