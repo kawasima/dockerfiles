@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  api:
+    image: kawasima/rascaloid
+  ui:
+    image: kawasima/rascaloid-ri
+    ports:
+      - 3000:3000
+    environment:
+      - PORT=3000
+      - RASCALOID_HOST=api
+      - RASCALOID_PORT=3000
+      - http_porxy=
+    depends_on:
+      - api
