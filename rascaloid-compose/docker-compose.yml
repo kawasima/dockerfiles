@@ -1,8 +1,21 @@
 version: "3"
 
 services:
+  db:
+    image: postgres:10-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=rascaloid
+
   api:
-    image: kawasima/rascaloid
+    image: kawasima/rascaloid:postgres
+    environment:
+      - JDBC_URL=jdbc:postgresql://db/rascaloid
+      - JDBC_USER=rascaloid
+      - JDBC_PASS=password
+    depends_on:
+      - db
   ui:
     image: kawasima/rascaloid-ri
     ports:
